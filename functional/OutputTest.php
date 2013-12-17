@@ -43,6 +43,12 @@ class OutputTest extends FunctionalTestBase
         $this->assertRegExp('/[.F]{4}/', $output);
     }
 
+    public function testErrorLogIsOutputToStderrForDebugging()
+    {
+        $output = $this->getParaTestOutput(false, array('p' => '1'));
+        $this->assertContains('this should be displayed', $this->getErrorOutput());
+    }
+
     protected function assertFunctionalModeIsOnWithFeedback($output)
     {
         $this->assertContains("Running phpunit in 5 processes with " . PHPUNIT, $output);

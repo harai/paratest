@@ -12,6 +12,7 @@ class UnitTestWithClassAnnotationTest extends \PHPUnit_Framework_TestCase
      */
     public function testTruth()
     {
+    	error_log('this should be displayed');
         $this->assertTrue(true);
     }
 
