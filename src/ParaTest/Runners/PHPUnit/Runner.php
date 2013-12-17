@@ -81,11 +81,13 @@ class Runner
         $this->load();
         $this->printer->start($this->options);
         while (count($this->running) || count($this->pending)) {
-            foreach($this->running as $key => $test)
+            foreach($this->running as $key => $test) {
                 if (!$this->testIsStillRunning($test)) {
                     unset($this->running[$key]);
                     $this->releaseToken($key);
+					fwrite(STDERR, $test->getStderr());
                 }
+			}
             $this->fillRunQueue();
             usleep(10000);
         }
